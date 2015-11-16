@@ -44,10 +44,6 @@ https://en.wikipedia.org/wiki/Information_system
 https://en.wikipedia.org/wiki/Syntax_(programming_languages)
 https://en.wikipedia.org/wiki/Theoretical_computer_science
 https://en.wikipedia.org/wiki/Web_crawler
-
-
-
-Related
 https://en.wikipedia.org/wiki/Web_search_engine
 https://en.wikipedia.org/wiki/Python_(programming_language)
 https://en.wikipedia.org/wiki/Foobar
@@ -61,10 +57,5 @@ https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 https://en.wikipedia.org/wiki/XHTML
 https://en.wikipedia.org/wiki/JavaScript
 https://en.wikipedia.org/wiki/JQuery
-
-
-
-Kind of Related
 https://en.wikipedia.org/wiki/World_Wide_Web
 https://en.wikipedia.org/wiki/Browser_extension
-
