@@ -1,6 +1,6 @@
 import os,sys
 from random import *
-
+from Wikipedia_API import *
 
 class Trainingset:
     def __init__(self):

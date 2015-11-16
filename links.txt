@@ -1,61 +1,61 @@
-Software_engineering
-Software_maintenance
-Formal_methods
-Software_quality
-Software_quality_assurance
-Measurement_Software
-Fault-tolerant_software
-Software_testing
-Enterprise_architecture
-Software_architecture
-Software_engineering_economics
-Agile_software_development
-Software_design_pattern
-Software_modelling
-Systems_analyst
-Object-oriented_analysis_and_design
-Requirements_analysis
-Software_development
-Software_configuration_management
-Software_project_management
-Software_engineering_management
-Software_development_process
-Software_release_life_cycle
-Software_design
-Software_deployment
-Software_maintenance
-Software_engineer
-Computer_science
-Computer_programming
-Computer_program
+Software engineering
+Software maintenance
+Formal methods
+Software quality
+Software quality assurance
+Measurement Software
+Fault-tolerant software
+Software testing
+Enterprise architecture
+Software architecture
+Software engineering economics
+Agile software development
+Software design pattern
+Software modelling
+Systems analyst
+Object-oriented analysis and design
+Requirements analysis
+Software development
+Software configuration management
+Software project management
+Software engineering management
+Software development process
+Software release life cycle
+Software design
+Software deployment
+Software maintenance
+Software engineer
+Computer science
+Computer programming
+Computer program
 Executable
-Central_processing_unit
+Central processing unit
 Debugging
-Systems_engineering
+Systems engineering
 Software
-Software_documentation
-Application_programming_interface
-Application_software
-Software_prototyping
-System_testing
-Integration_testing
-Software_construction
-Information_system
-Syntax_(programming_languages)
-Theoretical_computer_science
-Web_crawler
-Web_search_engine
-Python_(programming_language)
+Software documentation
+Application programming interface
+Application software
+Software prototyping
+System testing
+Integration testing
+Software construction
+Information system
+Syntax (programming languages)
+Theoretical computer science
+Web crawler
+Web search engine
+Python (programming language)
 Foobar
-Metasyntactic_variable
-Placeholder_name
+Metasyntactic variable
+Placeholder name
 Pygame
-Scripting_language
-Information_retrieval
+Scripting language
+Information retrieval
 HTML
-Cascading_Style_Sheets
+Cascading Style Sheets
 XHTML
 JavaScript
 JQuery
-World_Wide_Web
-Browser_extension
+World Wide Web
+Browser extension
