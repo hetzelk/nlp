@@ -27,9 +27,18 @@ class Trainingset:
             print(line)
             
             del concatfile[random]
-    def annotate(self):
-        pass
-    
+        return randomfile    
+    def annotate(self,pathtooutput):
+        path = os.path.dirname(os.path.abspath(__file__))         
+        
+        for(line in set1.mash("links.txt","random.txt"))
+            print ("evaluate this line of how much it has to do with coding 0-1000")
+            print(line)
+            topic_score = int(input("topic score>"))
+            
+            code_score = int(input("topic score>"))
+            
+            #hook line into mongo db
+
 #simpletest 
 set1= Trainingset()
-set1.mash("links.txt","random.txt","output.txt")
