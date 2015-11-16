@@ -18,7 +18,7 @@ class Constructor():
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
             page_info = {
             'content': page.content,
-            'url': page.url
+            'url': page.url,
             'summary': page.summary,
             'links': page.links,
             'sections': page.sections,
