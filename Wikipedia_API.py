@@ -18,7 +18,7 @@ class Constructor():
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
             page_info = {
             'content': page.content,
-            'url': page.url
+            'url': page.url,
             'summary': page.summary,
             'links': page.links,
             'sections': page.sections,
@@ -59,3 +59,5 @@ class Constructor():
             return [match for match in matches if len(match) <= match_length]
         except Exception as e:
             print("Type: {} | Error: {}".format(type(e), e))
+            
+print (Wikipedia_API().get_random_pages(60))
