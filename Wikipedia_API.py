@@ -9,6 +9,8 @@ class Constructor():
         self.endpoint = "http://en.wikipedia.org/w/api.php"
         self.constructors = "&format=json&action=query&prop=revisions&rvprop=content"
         
+    ## MAIN COMMANDS
+    
     def get_article_info(self, title, auto_suggest = True, redirect = True, topic_match_length = 250):
         try:
             title = str(title)
@@ -16,6 +18,7 @@ class Constructor():
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
             page_info = {
             'content': page.content,
+            'url': page.url
             'summary': page.summary,
             'links': page.links,
             'sections': page.sections,
@@ -25,6 +28,13 @@ class Constructor():
             return page_info
         except Exception as e:
             print("Type: {} | Error: {}".format(type(e), e))
+            
+    def get_random_pages(self, num):
+        title_list = wikipedia.random(num = num)
+        page_list = [wikipedia.page(title = page) for page in page_list]
+        return [(page.title, page.url) for page in page_list]
+            
+    ## SUPPLEMENTARY METHODS
             
     def get_article_json(self, title):
         title = parse.quote_plus(title)
