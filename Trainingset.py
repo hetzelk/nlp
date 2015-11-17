@@ -8,17 +8,15 @@ class Trainingset:
         self.DAO = DAO()
         self.api = Wikipedia_API()
         self.links = self.read_file("links.txt")
-        self.training_set = []
-        self.training_dict = {'set': None}
         
-    def annotate(self, input, collection):
+    def annotate(self, input):
+        print("Starting to insert {} article dictionaries.".format(len(input)))
         for title in input:
             page_info = self.api.get_article_info(title)
             ## page_info['topic_score'] = input("Enter a topic score (How topical is this article?) > ")
             ## page_info['code_score'] = input("Enter a code score (How related to code is this article?) > ")
             inserted_id = self.DAO.insert_one(page_info)
-            if inserted_id is not None:
-                return True
+            print("Inserted: {}".format(inserted_id))
             
     def read_file(self, file):
         file = open('links.txt', 'r+')
@@ -47,5 +45,5 @@ class Trainingset:
             del concatfile[random]
         return randomfile
             
-set = Trainingset()
-set.annotate("TEST", set.links)
+## set = Trainingset()
+## set.annotate("TEST", set.links)
