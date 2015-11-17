@@ -1,10 +1,23 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
+import os
+
 
 app = Flask(__name__)
+handle = connect()
 
-@app.route('/')
-def home():
-	return render_template('index.html', name = "Alex")
-    
+@app.route('/index', methods=['GET'])
+@app.route('/', methods =['GET'])
+def index():
+	#bind the index page to the database
+	#userinputs = [x for x in handle.mycollection.find()]
+	return render_template('index.html', name= "Ryan")
+
+@app.route('/write', methods=['POST'])
+def write():
+	userinput= request.form.get("userinput")
+	#oid = handle.mycollection.insert({"message": userinput})
+	return redirect ("/")
+
 if __name__ == '__main__':
-    app.run()
+	port = int(os.environ.get('PORT, 5000'))
+    app.run(host="10.2.20.39", port=port, debug = True)
