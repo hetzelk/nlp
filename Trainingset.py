@@ -5,7 +5,7 @@ from DAO import *
 
 class Trainingset:
     def __init__(self):
-        self.db = DAO()
+        self.DAO = DAO()
         self.api = Wikipedia_API()
         self.links = self.read_file("links.txt")
         self.training_set = []
@@ -16,10 +16,10 @@ class Trainingset:
             page_info = self.api.get_article_info(title)
             ## page_info['topic_score'] = input("Enter a topic score (How topical is this article?) > ")
             ## page_info['code_score'] = input("Enter a code score (How related to code is this article?) > ")
-            self.training_set.append(page_info)
-        self.training_dict['set'] = self.training_set
-        self.db.insert_one(self.training_dict)
-    
+            inserted_id = self.DAO.insert_one(page_info)
+            if inserted_id is not None:
+                return True
+            
     def read_file(self, file):
         file = open('links.txt', 'r+')
         lines = file.readlines()
