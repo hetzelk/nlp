@@ -5,7 +5,7 @@ from DAO import *
 
 class Trainingset:
     def __init__(self):
-        self.db = DAO()
+        self.db = DAO("TEST")
         self.api = Wikipedia_API()
         self.links = self.read_file("links.txt")
         self.training_set = []
@@ -18,7 +18,7 @@ class Trainingset:
             self.training_set.append(page_info)
         self.db.insert_many(self.training_set)
     
-    def read_file(file):
+    def read_file(self, file):
         file = open('links.txt', 'r+')
         lines = file.readlines()
         file.close()

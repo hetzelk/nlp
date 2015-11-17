@@ -2,12 +2,18 @@ import pymongo
 from pymongo import MongoClient
 
 class DAO:
-    def __init__(self):
-        self.client = MongoClient()
-        self.db = self.client.database
-        self.wiki_corpus = self.db.wiki_corpus
+    def __init__(self, collection_type):
+        self.client = MongoClient("mongodb://gandalf:fooledeveryone@10.2.20.39")
+        self.db = self.client['admin']
+        if connection_type == "TEST":
+            self.test = self.db['TEST']
+        else:
+            self.topics = self.db['topics']
     
-    ## Takes list of objects
-    def insert_many(self, entries):
-        ids = self.wiki_corpus.insert_many(entries).inserted_ids
-        return ids
+    def insert_many(self, collection, entries):
+        if collection = "TEST":
+            ids = self.test.insert_many(entries).inserted_ids
+            return ids
+        else:
+            ids = self.topics.insert_many(entries).inserted_ids
+            return ids
