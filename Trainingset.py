@@ -5,18 +5,20 @@ from DAO import *
 
 class Trainingset:
     def __init__(self):
-        self.db = DAO("TEST")
+        self.db = DAO()
         self.api = Wikipedia_API()
         self.links = self.read_file("links.txt")
         self.training_set = []
+        self.training_dict = {'set': None}
         
-    def annotate(self):
-        for title in links:
-            page_info = api.get_article_info(title)
-            page_info['topic_score'] = input("Enter a topic score (How topical is this article?) > ")
-            page_info['code_score'] = input("Enter a code score (How related to code is this article?) > ")
+    def annotate(self, input, collection):
+        for title in input:
+            page_info = self.api.get_article_info(title)
+            ## page_info['topic_score'] = input("Enter a topic score (How topical is this article?) > ")
+            ## page_info['code_score'] = input("Enter a code score (How related to code is this article?) > ")
             self.training_set.append(page_info)
-        self.db.insert_many(self.training_set)
+        self.training_dict['set'] = self.training_set
+        self.db.insert_one(self.training_dict)
     
     def read_file(self, file):
         file = open('links.txt', 'r+')
@@ -45,5 +47,5 @@ class Trainingset:
             del concatfile[random]
         return randomfile
             
-#simpletest 
-set1= Trainingset()
+set = Trainingset()
+set.annotate("TEST", set.links)
