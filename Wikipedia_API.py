@@ -25,7 +25,7 @@ class Wikipedia_API():
         
     def get_article_json(self, title):
         title = parse.quote_plus(title)
-        response = requests.get(self.endpoint + "?titles={}".format(title) + self.constructors)
+        response = requests.get(self.endpoint + "?titles={}".format(title) + self.article_constructor)
         return response.json()
         
     def get_random_articles(self, num):
