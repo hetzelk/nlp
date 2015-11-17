@@ -11,7 +11,6 @@ class Wikipedia_API():
     def get_article_info(self, title, auto_suggest = True, redirect = True, topic_match_length = 250):
         try:
             title = str(title)
-            revisions = self.get_article_revisions(title)
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
             page_info = {
                 'url': page.url,

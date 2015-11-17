@@ -11,6 +11,3 @@ class DAO:
     def insert_many(self, entries):
         ids = self.wiki_corpus.insert_many(entries).inserted_ids
         return ids
-        
-    def objectify_entry(self, entries):
-        
