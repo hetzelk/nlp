@@ -1,0 +1,86 @@
+html,body,#page,#content{
+
+	height:100%;
+	margin:0;
+}
+
+
+#header-container{
+
+	width:100%; 
+	background: #00001a;
+	top:0px;
+	position: fixed;
+	height:50px;
+	z-index: 500;
+	padding-bottom: 10px;
+
+}
+#headerTop
+{	
+	height:50px;
+	background: #00001a;
+	border-bottom:1px solid black;
+	margin: 0px auto;
+	width:100%;
+	
+	z-index: 500;
+
+}
+
+#content{
+	margin:0px auto;
+	width:100%;
+	margin-top: 42px;
+	overflow:hidden;
+	display: table;	
+}
+
+#col-1{
+
+	float:left;
+	margin-right:1px;
+	width:24%; 
+	overflow: scroll;
+	display: table-cell;
+	height: 100%;
+	
+
+}
+
+#col-2{
+	float:left;
+	margin-right:1px;
+	width:24%;  
+	overflow: scroll;
+	display: table-cell;
+	height: 100%;
+}
+
+#col-3{
+	float:left;
+	margin-right:1px;
+	width:24%; 
+	overflow: scroll;
+	display: table-cell;
+	height: 100%;
+}
+
+#col-4{
+	float:right;
+	margin-right:1px;
+	width:24%;  
+	overflow: scroll;
+	display: table-cell;
+	height: 100%;
+}
+
+
+.linkColumn div{
+	
+	background-color:;
+	margin:3px;
+	padding: 3px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
