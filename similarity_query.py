@@ -9,6 +9,7 @@ class Similarity:
         self.corpus = corpora.MmCorpus('{}'.format(corpuspath))
         self.index = self.initialize_query_structure()
         
-    def initialize_query_structure(self):
+    def initialize_query_structure(self, fname):
         index = similarities.MatrixSimilarity(lsi[self.corpus])
+        index.save(fname + '.index')
         return index

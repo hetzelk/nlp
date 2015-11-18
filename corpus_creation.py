@@ -1,12 +1,14 @@
 import logging
-from gensim import corpora, models, similarities
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+
+from gensim import corpora, models, similarities
 from nltk.corpus import stopwords
 from collections import defaultdict
 #from article_dict import Article
 
 class Corporalize:
     def __init__(self):
+        self.articles = []
         self.cleaned_softarticles = self.eliminate_stopwords()
         self.final_softarticles = self.eliminate_one_words()
         self.dictionary = self.create_dict_and_save()
@@ -15,7 +17,7 @@ class Corporalize:
     def eliminate_stopwords(self):
         stop_list = stopwords.words("english")
         cleaned_softarticles = []
-        for article in software_articles:
+        for article in self.articles:
             ls = [word for word in article.lower().split() if word not in stop_list]
             cleaned_softarticles.append(ls)
         return cleaned_softarticles
@@ -31,15 +33,15 @@ class Corporalize:
             final_softarticles.append(ls)
         return final_softarticles
 
-    def create_dict_and_save(self):
+    def create_dict_and_save(self, fname='softarticles'):
         dictionary = corpora.Dictionary(final_softarticles)
-        dictionary.save('softarticles.dict')
+        dictionary.save(fname + '.dict')
         #print(dictionary.token2id)
         return dictionary
     
-    def create_corpus_and_save(self):
+    def create_corpus_and_save(self, fname='softarticles'):
         corpus = [dictionary.doc2bow(article) for article in final_softarticles]
-        corpora.MmCorpus.serialize('softarticles.mm', corpus)
+        corpora.MmCorpus.serialize(fname + '.mm', corpus)
         return corpus
 
 
