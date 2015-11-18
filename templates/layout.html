@@ -7,14 +7,16 @@
 <body>
 
 	<header>
+		<div class="container">
         <h1 class ="logo">devCodeCamp</h1>
         	<strong><nav>
 				<ul class="menu">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('index') }}">Home</a></li>
 					<li><a href="{{ url_for('training-set') }}">Training Set</a></li>
 					<li><a href="{{ url_for('quote') }}">Quote</a></li>
 				</ul>
 			</nav></strong>
+		</div>
 	</header>
     
 	<div class = "jumbo">
@@ -22,7 +24,7 @@
 		<h3>This is the home page for the Flask app</h3>
 	</div>
 	
-	<div class = "form">
+	<div class = "form container">
     {% block form %}
     {% endblock %}
 	</div>
