@@ -1,22 +1,39 @@
 import os,sys
 from random import *
 from Wikipedia_API import *
-from DAO import * 
+from DAO import *
 
 class Trainingset:
     def __init__(self):
         self.DAO = DAO()
         self.api = Wikipedia_API()
-        self.links = self.read_file("links.txt")
+        self.links = self.read_file("links.txt") ## 285 Topics Successfully Parsed
+        self.random = self.api.get_random(285)
         
     def annotate(self, input):
-        print("Starting to insert {} dictionares.".format(len(input)))
+        print("Beginning annotation of {} titles.".format(len(input)))
         for title in input:
             page_info = self.api.get_article_info(title)
-            ## page_info['topic_score'] = input("Enter a topic score (How topical is this article?) > ")
-            ## page_info['code_score'] = input("Enter a code score (How related to code is this article?) > ")
+            print("Title: {}".format(title))
+            page_info['topic_score'] = input("Enter a topic score for {} (How topical is this article?) > ".format(title))
+            page_info['code_score'] = input("Enter a Software Engineering score {} (How related to code is this article?) > ".format(title))
             inserted_id = self.DAO.insert_one(page_info)
             print("Inserted: {}".format(inserted_id))
+            
+    def test(self, input):
+        successfully_parsed = 0
+        errored_out = []
+        for title in input:
+            try:
+                page_info = self.api.get_article_info(title)
+                if page_info['links'] is not None:
+                    successfully_parsed += 1
+                    print("Parsed {}".format(title))
+            except Exception as e:
+                print(e)
+                errored_out.append(title)
+                
+        return successfully_parsed, errored_out
             
     def read_file(self, file):
         file = open('links.txt', 'r+')
@@ -44,6 +61,7 @@ class Trainingset:
             
             del concatfile[random]
         return randomfile
-            
-## set = Trainingset()
-## set.annotate("TEST", set.links)
+        
+set = Trainingset()
+set.annotate(set.links)
+set.annotate(set.random)
