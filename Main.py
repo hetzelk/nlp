@@ -3,11 +3,15 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/index', methods=['GET'])
-@app.route('/', methods =['GET'])
+@app.route('/index', methods = ['GET'])
+@app.route('/', methods = ['GET'])
 def index():
     return render_template('index.html')
 
+@app.route('/training-set')
+def training_set():
+    return render_template('training-set.html')
+    
 @app.route('/write', methods=['POST'])
 def write():
 	user_input = request.form.get("user-input")
