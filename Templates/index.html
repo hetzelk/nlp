@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Demo</title>
+	<title>DCC NLP</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">;
 </head>
 <body>
-	<h1>Hello</h1>
+	<header>
+		<div class="container">
+			<h1 class="logo">devCodeCamp</h1>
+		</div>
+	</header>
+	<div class="jumbo">
+		<h2>Welcome to the Flask app</h2>
+		<h3>This is the home page for the Flask app</h3>
+	</div>
+	
+	<div class ="container">
+	<div class="form">
 	<form action="/write" method="POST">
-		<input type="text" name="userinput" id="userinput">
+		<input type="text" placeholder="Enter subject" name="userinput" id="userinput">
 		<input type="submit" value="Submit">
 	</form>
+	</div>
+	</div>
 
-{% for userinput in userinputs %}
-<p>'{{userinput.message}}' has database id {{userinput._id}}</p>
-{% endfor%}
+	<div class="container2">
+		{% block content %}
+		<p>Talent is a pursued interest. That is to say, anything you practice you can do. You can create beautiful things - but you have to see them in your mind first. I get carried away with this brush cleaning I want everbody to be happy. That's what it's all about.</p>
 
+<p>No worries. No cares. Just float and wait for the wind to blow you around. Every highlight needs it's own personal shadow. If you don't think every day is a good day - try missing a few. You'll see. There we go. In painting, you have unlimited power. You have the ability to move mountains. You can bend rivers. But when I get home, the only thing I have power over is the garbage.</p>
+
+<p>The only prerequisite is that it makes you happy. If it makes you happy then it's good. But we're not there yet, so we don't need to worry about it. Making all those little fluffies that live in the clouds.</p>
+
+<p>Maybe there's a happy little Evergreen that lives here. See. We take the corner of the brush and let it play back-and-forth. Maybe there's a happy little bush that lives right there.</p>
+
+<p>Isn't it fantastic that you can change your mind and create all these happy things? The light is your friend. Preserve it. We'll take a little bit of Van Dyke Brown.</p>
+
+<p>Automatically, all of these beautiful, beautiful things will happen. This is a happy place, little squirrels live here and play. These things happen automatically. All you have to do is just let them happen.</p>
+
+<p>Just let this happen. We just let this flow right out of our minds. If you do too much it's going to lose its effectiveness. We're not trying to teach you a thing to copy. We're just here to teach you a technique, then let you loose into the world. Just make little strokes like that. When you buy that first tube of paint it gives you an artist license. It's beautiful - and we haven't even done anything to it yet.</p>
+
+
+		{% endblock %}
+	</div>
 </body>
 </html>

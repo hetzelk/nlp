@@ -17,20 +17,29 @@ header {
 header h1.logo{
 	margin: 0;
 	font-size: 1.7em;
-	color: #fff;
+	color: #ff9900;
 	text-transform: uppercase;
 	float: left;
 }
 
-header h1.logo:hover{
-	color: #fff;
-	text-decoration: none;
+/* body content */
+.container, .container2{
+	width: 1000px;
+	margin: 0 auto;
+}
+.container{
+    border-bottom: 1px solid #2b2b2b;
+}
+.container2 p{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
-/* body content */
-.container{
-	width: 940px;
-	margin: 0 auto;
+.form{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
 }
 
 div.jumbo{
@@ -39,7 +48,11 @@ div.jumbo{
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 
 h2 {
 	font-size: 3em;
