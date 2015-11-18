@@ -3,21 +3,25 @@ import os
 
 app = Flask(__name__)
 
-#@app.route('/index', methods = ['GET'])
+@app.route('/index', methods = ['GET'])
 @app.route('/', methods = ['GET'])
 def index():
-#    return "hello, world"
-    return render_template('index.html')
+    return "hello, world"
+#    return render_template('index.html')
 
-#@app.route('/training-set')
-#def training_set():
+@app.route('/training-set')
+def training_set():
 #    return "hello, world!"
-#    return render_template('training-set.html')
+    return render_template('training-set.html')
     
-#@app.route('/write', methods=['POST'])
-#def write():
-#	user_input = request.form.get("user-input")
-#	return redirect(url_for('index'))
+@app.route('/write', methods=['POST'])
+def write():
+	user_input = request.form.get("user-input")
+	return redirect(url_for('index'))
+
+@app.route('/quote')
+def quote():
+    return render_template('quote.html')
     
 if __name__ == '__main__':
     port = int(os.environ.get('PORT, 5000'))
