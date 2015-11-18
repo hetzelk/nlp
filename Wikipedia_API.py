@@ -34,8 +34,15 @@ class Wikipedia_API():
         url_list = []
         for title in article_titles:
             try:
+                print (title)
                 page = wikipedia.page(title = title)
                 url_list.append((page.url, page.title))
             except wikipedia.exceptions.DisambiguationError:
                 pass
+            except wikipedia.exceptions.PageError:
+                pass
+            except:
+                pass
+                
         return url_list
+print(Wikipedia_API().get_random_articles(100))
