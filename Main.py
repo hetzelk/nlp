@@ -2,7 +2,6 @@ from flask import Flask, render_template, redirect, request
 import os
 
 app = Flask(__name__)
-handle = connect()
 
 #@app.route('/index', methods=['GET'])
 @app.route('/', methods =['GET'])
