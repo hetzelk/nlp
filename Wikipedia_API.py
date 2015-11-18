@@ -14,6 +14,7 @@ class Wikipedia_API():
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
             page_info = {
                 'url': page.url,
+                'page_id': page.pageid,
                 'content': page.content,
                 'summary': page.summary,
                 'links': page.links,
