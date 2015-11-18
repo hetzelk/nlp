@@ -7,18 +7,21 @@
 <body>
 
 	<header>
+		<div class="container">
         <h1 class ="logo">devCodeCamp</h1>
         	<strong><nav>
 				<ul class="menu">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('index') }}">Home</a></li>
 					<li><a href="{{ url_for('training-set') }}">Training Set</a></li>
 					<li><a href="{{ url_for('quote') }}">Quote</a></li>
 				</ul>
 			</nav></strong>
+		</div>
 	</header>
-	
-	<div class="jumbo">
-		<h2>Talent is a pursued interest. That is to say, anything you practice you can do. You can create beautiful things - but you have to see them in your mind first. I get carried away with this brush cleaning I want everbody to be happy. That's what it's all about.</h2>
+
+	<div class="jumbo quote">
+		<h3>Talent is a pursued interest. That is to say, anything you practice you can do. You can create beautiful things - but you have to see them in your mind first.</h3>
+		<h4> - Bob Ross</h4>
 	</div>
 
 </body>

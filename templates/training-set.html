@@ -1,42 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>DCC NLP</title>
-	<link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
+{% extends "layout.html" %}
 
-	<header>
-		<div class="container">
-        <h1 class ="logo">devCodeCamp</h1>
-        	<strong><nav>
-				<ul class="menu">
-					<li><a href="{{ url_for('index') }}">Home</a></li>
-					<li><a href="{{ url_for('training-set') }}">Training Set</a></li>
-					<li><a href="{{ url_for('quote') }}">Quote</a></li>
-				</ul>
-			</nav></strong>
-		</div>
-	</header>
-    
+{% block form %}
+<form action="/write" method="POST">
+    <input type="text" placeholder="Enter subject" name="userinput" id="userinput">
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
 
-	<div class="jumbo">
-		<h2>Welcome to the Flask app</h2>
-		<h3>This is the home page for the Flask app</h3>
-	</div>
-	
-	<div class ="form container">
-	<form action="/write" method="POST">
-		<input type="text" placeholder="Enter subject" name="userinput" id="userinput" size= "40">
-		<input type="submit" value="Submit">
-	</form>
-	</div>
-
-
-	<div class="main-content container">
-		{% block content %}
-		{% endblock %}
-	</div>
-</div>
-</body>
-</html>
+{% block main_content %}
+<p>AI bruh</p>
+{% endblock %}
