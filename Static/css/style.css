@@ -23,7 +23,7 @@ header h1.logo{
 }
 
 /* body content */
-.form, .main-content{
+.container{
 	width: 1000px;
 	margin: 0 auto;
 }
@@ -37,9 +37,7 @@ header h1.logo{
 }
 
 .form{
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-bottom: 20px;
+	margin: 20px auto 20px auto;
 }
 
 div.jumbo{
@@ -87,6 +85,6 @@ h3{
 }
 
 .menu li a{
-	color: #999;
+	color: #ff9900;
 	text-decoration: none;
 }

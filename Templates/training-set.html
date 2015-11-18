@@ -7,30 +7,36 @@
 <body>
 
 	<header>
+		<div class="container">
         <h1 class ="logo">devCodeCamp</h1>
         	<strong><nav>
 				<ul class="menu">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('index') }}">Home</a></li>
 					<li><a href="{{ url_for('training-set') }}">Training Set</a></li>
 					<li><a href="{{ url_for('quote') }}">Quote</a></li>
 				</ul>
 			</nav></strong>
+		</div>
 	</header>
     
-	<div class = "jumbo">
+
+	<div class="jumbo">
 		<h2>Welcome to the Flask app</h2>
 		<h3>This is the home page for the Flask app</h3>
 	</div>
 	
-	<div class = "form">
-    {% block form %}
-    {% endblock %}
+	<div class ="form container">
+	<form action="/write" method="POST">
+		<input type="text" placeholder="Enter subject" name="userinput" id="userinput" size= "40">
+		<input type="submit" value="Submit">
+	</form>
 	</div>
 
-	<div class = "main-content">
-    {% block main_content %}
-	{% endblock %}
+
+	<div class="main-content container">
+		{% block content %}
+		{% endblock %}
 	</div>
-    
+</div>
 </body>
 </html>
