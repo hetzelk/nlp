@@ -52,22 +52,25 @@ div.jumbo{
 }
 
 
-h2 {
-	font-size: 3em;
+h3 {
+	font-size: 2em;
 	margin-top: 40px;
+	margin-left: 30px;
+	margin-right: 30px;
 	text-align: center;
 	letter-spacing: -2px;
 }
 
-h3{
+h4{
 	font-size: 1.7em;
 	font-weight: 100;
 	margin-top: 30px;
-	text-align: center;
+	margin-left: 30px;
+	margin-right: 30px;
 	letter-spacing: -1px;
-	color: #999;
-
+	color: #2c2c2c;
 }
+
 
 /* navigation */
 
