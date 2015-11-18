@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DCC NLP</title>
+	<link rel="stylesheet" href="../static/css/style.css">;
+</head>
+<body>
+
+	<header>
+        <h1 class = "logo">devCodeCamp</h1>
+	</header>
+    
+	<div class = "jumbo">
+		<h2>Welcome to the Flask app</h2>
+		<h3>This is the home page for the Flask app</h3>
+	</div>
+	
+	<div class = "form">
+    {% block form %}
+    {% endblock %}
+	</div>
+
+	<div class = "main-content">
+    {% block main_content %}
+	{% endblock %}
+	</div>
+    
+</body>
+</html>
