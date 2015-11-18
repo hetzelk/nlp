@@ -41,4 +41,6 @@ class Wikipedia_API():
                 missed += 1
                 print(type(e))
                 pass
+        if missed > 0:
+            return self.get_random(missed, output, 0)
         return output
