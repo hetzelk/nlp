@@ -14,6 +14,7 @@ class Corporalize:
         
     def eliminate_stopwords(self):
         stop_list = stopwords.words("english")
+        stop_list.append(['.', ',', '"', "'", '?', '!', ':', ';','=', '(', ')', '[', ']', '{', '}'])
         cleaned_softarticles = []
         for article in software_articles:
             ls = [word for word in article.lower().split() if word not in stop_list]
