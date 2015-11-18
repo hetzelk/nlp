@@ -10,7 +10,7 @@ class Trainingset:
         self.links = self.read_file("links.txt")
         
     def annotate(self, input):
-        print("Starting to insert {} article dictionaries.".format(len(input)))
+        print("Starting to insert {} dictionares.".format(len(input)))
         for title in input:
             page_info = self.api.get_article_info(title)
             ## page_info['topic_score'] = input("Enter a topic score (How topical is this article?) > ")

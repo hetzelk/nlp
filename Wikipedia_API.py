@@ -28,14 +28,17 @@ class Wikipedia_API():
         response = requests.get(self.endpoint + "?titles={}".format(title) + self.article_constructor)
         return response.json()
         
-    def get_random_articles(self, num):
+    def get_random(self, num, output, missed):
         response = requests.get(self.endpoint + "?rnlimit={}".format(str(num)) + self.random_constructor)
         article_titles = [article['title'] for article in response.json()['query']['random']]
-        url_list = []
+        output = output
+        missed = missed
         for title in article_titles:
             try:
                 page = wikipedia.page(title = title)
-                url_list.append((page.url, page.title))
-            except wikipedia.exceptions.DisambiguationError:
+                output.append(page.title)
+            except Exception as e:
+                missed += 1
+                print(type(e))
                 pass
-        return url_list
+        return output
