@@ -13,12 +13,13 @@ class Wikipedia_API():
             title = str(title)
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
             page_info = {
+                'title': page.title,
                 'url': page.url,
                 'page_id': page.pageid,
                 'content': page.content,
                 'summary': page.summary,
                 'links': page.links,
-                'json': self.get_article_json(title),
+                ## 'json': self.get_article_json(title),
             }
             return page_info
         except Exception as e:
