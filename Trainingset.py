@@ -7,8 +7,8 @@ class Trainingset:
     def __init__(self):
         self.DAO = DAO()
         self.api = Wikipedia_API()
-        self.links = self.read_file("links.txt") ## 285 Topics Successfully Parsed
-        ## self.random = self.api.get_random(285)
+        ## self.links = self.read_file("links.txt") ## 285 Topics Successfully Parsed
+        self.random = self.api.get_random(10, [], 0)
         
     def annotate(self, input):
         print("Beginning annotation of {} titles.".format(len(input)))
@@ -16,10 +16,7 @@ class Trainingset:
         for title in input:
             try:
                 page_info = self.api.get_article_info(title)
-                ## print("Title: {}".format(title))
-                ## page_info['topic_score'] = input("Enter a topic score for {} (How topical is this article?) > ".format(title))
-                ## page_info['code_score'] = input("Enter a Software Engineering score {} (How related to code is this article?) > ".format(title))
-                inserted_id = self.DAO.insert_one(page_info)
+                inserted_id = self.DAO.insert_one(page_info, "random")
                 print("Inserted: {}".format(inserted_id))
                 inserted += 1
             except Exception as e:
@@ -69,4 +66,4 @@ class Trainingset:
         return randomfile
         
 set = Trainingset()
-set.annotate(set.links)
+set.annotate(set.random)
