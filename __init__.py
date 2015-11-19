@@ -3,15 +3,16 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/index', methods = ['GET'])
 @app.route('/', methods = ['GET'])
 def index():
-    return "hello, world"
-#    return render_template('index.html')
+    try:
+        return render_template('index.html')
+    except Exception as e:
+        print(type(e))
+        print(e)
 
 @app.route('/training-set')
 def training_set():
-#    return "hello, world!"
     return render_template('training-set.html')
     
 @app.route('/write', methods=['POST'])
