@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for
 import os
-from DAO import DAO
+from DAO import *
 
 app = Flask(__name__)
 dao = DAO()
@@ -12,12 +12,12 @@ def index():
 
 @app.route('/training-set', methods = ['GET', 'POST'])
 def training_set():
-    try:
-        titles = dao.find('topics', 'title')
-        titles = [title.title() for title in titles]
-        return render_template('training-set.html', titles = titles)
-    except Exception as e:
-        print(e)
+#    try:
+    titles = dao.find('topics', 'title')
+    titles = [title.title() for title in titles]
+    return render_template('training-set.html', titles = titles)
+#    except Exception as e:
+#        print(e)
     
 @app.route('/write', methods=['POST'])
 def write():
@@ -29,5 +29,4 @@ def quote():
     return render_template('quote.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT, 5000'))
-    app.run(host = "10.2.20.12")
+    app.run()
