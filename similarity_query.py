@@ -38,30 +38,11 @@ class Similarity:
         lsi = models.LsiModel.load('gencache\sftartlsi')
         return lsi
         
-    def create_query(self, qlist):
-        query = qlist[0]
-        vec_bow = self.dictionary.doc2bow(query)
-        vec_lsi = self.lsi[vec_bow]
-        return vec_lsi
-        
-    def perform_query(self):
-        sims = self.index[self.vec_lsi]
-        print(type(sims))
-        return sims
-        
     def load_article_titles(self):
         article_titles = pickle.load(open('gencache\sftarticle_titles.pkl', 'rb'))
         return article_titles
         
-    def match_title_score(self):
-        score_dict = {}
-        for i, v in enumerate(self.sims):
-            title = self.article_titles[i]
-            value = (float(v)+1)*1000/2
-            value = str(value)[:5]
-            score_dict.update({title:value})
-        return score_dict
-        
+   
         
 class Query(Similarity):
     def __init__(self, Mrclean, dictpath='gencache\softarticles.dict'):
@@ -73,5 +54,29 @@ class Query(Similarity):
         self.index = self.load_index()
         #Necessary objects to perform the query are not loaded
         self.vec_lsi = self.create_query(self.query)
+        print(self.vec_lsi)
+        input('4444')
         self.sims = self.perform_query()
         self.score_dict = self.match_title_score()
+        
+    def create_query(self, qlist):
+        query = qlist[0]
+        print(query)
+        input('333')
+        vec_bow = self.dictionary.doc2bow(query)
+        vec_lsi = self.lsi[vec_bow]
+        return vec_lsi
+        
+    def perform_query(self):
+        sims = self.index[self.vec_lsi]
+        return sims
+        
+    def match_title_score(self):
+        score_dict = {}
+        for i, v in enumerate(self.sims):
+            title = self.article_titles[i]
+            value = (float(v)+1)*1000/2-500
+            value = str(value)[:5]
+            score_dict.update({title:value})
+        return score_dict
+        
