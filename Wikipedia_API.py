@@ -8,7 +8,7 @@ class Wikipedia_API():
         self.article_constructor = "&format=json&action=query&prop=revisions&rvprop=content"
         self.random_constructor = "&action=query&list=random&rnredirect=true&format=json"
             
-    def get_article_info(self, title, auto_suggest = True, redirect = True, topic_match_length = 250):
+    def get_article_info(self, title, auto_suggest = True, redirect = True):
         try:
             title = str(title)
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)

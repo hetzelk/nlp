@@ -12,8 +12,12 @@ class DAO:
         id = self.handle[keys['COLLECTIONS'][2]].insert_one(entry).inserted_id
         return id
     
-    def find(self, collection, query = None):
-        if query is not None:
-            return self.handle[collection].find(query)
-        else:
-            return self.handle[collection].find()
+    def find(self, collection, key):
+        cursor = self.handle[collection].find()
+        return [item[key] for item in cursor]
+        
+    def pop(self, collection):
+        cursor = self.handle[collection].find()
+        next_item = cursor.next()
+        self.handle[collection].delete_one({'title': next_item['title']})
+        return next_item
