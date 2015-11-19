@@ -1,5 +1,6 @@
 import logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+
 import pickle
 from gensim import corpora, models, similarities
 
@@ -10,12 +11,6 @@ class Similarity:
         self.corpus = self.load_corpus(corpuspath)
         # self.lsi = self.create_lsi()   
         # self.index = self.create_sim_index('gencache\sftarticle')
-        self.lsi = self.load_lsi()
-        self.index = self.load_index()
-        self.vec_lsi = self.create_query()
-        self.sims = self.perform_query()
-        self.score_dict = self.match_title_score()
-        print(self.score_dict)
         
     def create_sim_index(self, fname):
         index = similarities.MatrixSimilarity(self.lsi[self.corpus])
@@ -43,9 +38,9 @@ class Similarity:
         lsi = models.LsiModel.load('gencache\sftartlsi')
         return lsi
         
-    def create_query(self):
-        query = "Software Engineering Python"
-        vec_bow = self.dictionary.doc2bow(query.lower().split())
+    def create_query(self, qlist):
+        query = qlist[0]
+        vec_bow = self.dictionary.doc2bow(query)
         vec_lsi = self.lsi[vec_bow]
         return vec_lsi
         
@@ -62,9 +57,21 @@ class Similarity:
         score_dict = {}
         for i, v in enumerate(self.sims):
             title = self.article_titles[i]
-            score_dict.update({title:v})
+            value = (float(v)+1)*1000/2
+            value = str(value)[:5]
+            score_dict.update({title:value})
         return score_dict
         
         
-        
-s = Similarity()
+class Query(Similarity):
+    def __init__(self, Mrclean, dictpath='gencache\softarticles.dict'):
+        self.query = Mrclean.final_articles
+        self.query_title = Mrclean.article_titles
+        self.article_titles = self.load_article_titles()
+        self.dictionary = self.load_corp_dict(dictpath)
+        self.lsi = self.load_lsi()
+        self.index = self.load_index()
+        #Necessary objects to perform the query are not loaded
+        self.vec_lsi = self.create_query(self.query)
+        self.sims = self.perform_query()
+        self.score_dict = self.match_title_score()

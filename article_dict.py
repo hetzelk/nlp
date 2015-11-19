@@ -4,11 +4,11 @@ import re
 
 class Articles:
     def __init__(self):
-        # self.DAO = DAO()
         self.article_dict = self.load_article_dict()
 
     # def read(self):
-        # articles = self.DAO.find("topics")
+        # dao = DAO()
+        # articles = dao.find("topics")
         # for article in articles:
             # title = article["title"]
             # content = article["content"]
@@ -32,7 +32,20 @@ class Articles:
                     cont.replace(c, ' ')
             a.article_dict[key] = cont
             
+            
+class ObtainQuery(Articles):
+    def __init__(self):
+        self.query_dict = self.get_query()
 		
+    def get_query(self):
+        dao = DAO
+        article = dao.pop('TEST')
+        title = article["title"]
+        content = article["content"].encode('utf-8')
+        query = {title:content}
+        return query
+            
+        
 		
 
 
