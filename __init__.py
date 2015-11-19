@@ -1,9 +1,11 @@
 from flask import Flask, render_template, redirect, request, url_for
 import os
 from DAO import DAO
+from Wikipedia_API import Wikipedia_API
 
 app = Flask(__name__)
 dao = DAO()
+api = Wikipedia_API()
 
 @app.route('/index', methods= ['GET'])
 @app.route('/', methods = ['GET'])
