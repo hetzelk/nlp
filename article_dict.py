@@ -4,7 +4,7 @@ import re
 
 class Articles:
     def __init__(self):
-        self.DAO = DAO()
+        # self.DAO = DAO()
         self.article_dict = self.load_article_dict()
 
     # def read(self):

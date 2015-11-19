@@ -19,8 +19,8 @@ class Corporalize:
         self.stop_list = self.read_stoplist()
         self.cleaned_articles = self.eliminate_stopwords()
         self.final_articles = self.eliminate_one_words()
-        # self.dictionary = self.create_dict_and_save()
-        # self.corpus = self.create_corpus_and_save()
+        self.dictionary = self.create_dict_and_save()
+        self.corpus = self.create_corpus_and_save()
     
     # # modify this function when stop list needs to be edited or added to
     # def create_stoplist(self):
@@ -28,7 +28,11 @@ class Corporalize:
         # stop_list += ['==', '===', '====','external', 'links', 'search', '=', 'references', 'summary', '-', '.', ',', '', 'introduction', '^']
         # print(stop_list)
         # pickle.dump(stop_list, open('stoplist.pkl', 'wb'))
-    
+        
+    def write_titles_articles(self):
+        pickle.dump(self.article_titles, open('sftarticle_titles.pkl', 'wb'))
+        pickle.dump(self.final_articles, open('sftarticle_final.pkl', 'wb'))
+        
     def read_stoplist(self):
         stop_list = pickle.load(open('stoplist.pkl', 'rb'))
         # stop_list += ['linksedit', 'referencesedit', 'alsoedit', 'readingedit', 'correctnessedit', 'notesedit', 'statesedit', 'compileredit' 'overviewedit', 'architecturesedit', 'historyedit', 'definitionsedit', 'licensingedit', 'developmentedit', 'modeledit', 'toolsedit', 'organizationsedit', 'softwareedit', 'adoptionedit', 'usagedit', 'theoryedit', 'computationedit', 'originedit', 'eraedit', 'basicedit', 'versionsedit', 'otheredit', 'syntaxedit', 'examplesedit', 'featuresedit', 'standardedit']
