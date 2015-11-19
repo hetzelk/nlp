@@ -21,3 +21,7 @@ class DAO:
         next_item = cursor.next()
         self.handle[collection].delete_one({'title': next_item['title']})
         return next_item
+
+    def count(self, collection):
+        n = self.handle[collection].count()
+        return n
