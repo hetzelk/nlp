@@ -31,5 +31,4 @@ def quote():
     return render_template('quote.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT, 5000'))
-    app.run(host = "10.2.20.12")
+    app.run()
