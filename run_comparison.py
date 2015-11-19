@@ -12,11 +12,7 @@ class Compare:
         print(self.query.score_dict)
     
     def top_ten(self):
-        ten = sorted(self.query.score_dict.items(), key=lambda x:x[1], reverse=True)
+        ten = sorted(self.query.score_dict.items(), key = lambda x:x[1], reverse = True)
         titles = self.query.article_titles
         top_tuple = [(titles[i], s) for i, s in ten]
         return ten_tuple[:10]
-        
-if __name__=="__main__":
-    compare = Compare()
-    print(compare.top)
