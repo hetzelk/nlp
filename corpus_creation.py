@@ -10,17 +10,18 @@ from article_dict import Articles
 
 class Corporalize:
     def __init__(self):
-        # self.art = Articles()
-        # self.article_dict = self.get_article_dict()
-        # print(len(self.article_dict))
-        # self.article_titles = []
-        # self.articles= []
-        # self.get_title_content()
-        # self.stop_list = self.read_stoplist()
-        # self.cleaned_articles = self.eliminate_stopwords()
-        # self.final_articles = self.eliminate_one_words()
-        # self.dictionary = self.create_dict_and_save()
-        # self.corpus = self.create_corpus_and_save()
+        self.art = Articles()
+        self.article_dict = self.get_article_dict()
+        print(len(self.article_dict))
+        self.article_titles = []
+        self.articles= []
+        self.get_title_content()
+        self.stop_list = self.read_stoplist()
+        self.cleaned_articles = self.eliminate_stopwords()
+        self.final_articles = self.eliminate_one_words()
+        self.dictionary = self.create_dict_and_save()
+        self.corpus = self.create_corpus_and_save()
+        self.write_titles_articles()
     
     # # modify this function when stop list needs to be edited or added to
     # def create_stoplist(self):
@@ -30,8 +31,8 @@ class Corporalize:
         # pickle.dump(stop_list, open('stoplist.pkl', 'wb'))
         
     def write_titles_articles(self):
-        pickle.dump(self.article_titles, open('sftarticle_titles.pkl', 'wb'))
-        pickle.dump(self.final_articles, open('sftarticle_final.pkl', 'wb'))
+        pickle.dump(self.article_titles, open('gencache\sftarticle_titles.pkl', 'wb'))
+        pickle.dump(self.final_articles, open('gencache\sftarticle_final.pkl', 'wb'))
         
     def read_stoplist(self):
         stop_list = pickle.load(open('stoplist.pkl', 'rb'))
@@ -75,12 +76,12 @@ class Corporalize:
             final_articles.append(ls)
         return final_articles
         
-    def create_dict_and_save(self, fname='softarticles'):
+    def create_dict_and_save(self, fname='gencache\softarticles'):
         dictionary = corpora.Dictionary(self.final_articles)
         dictionary.save(fname + '.dict')
         return dictionary
     
-    def create_corpus_and_save(self, fname='softarticles'):
+    def create_corpus_and_save(self, fname='gencache\softarticles'):
         corpus = [self.dictionary.doc2bow(article) for article in self.final_articles]
         corpora.MmCorpus.serialize(fname + '.mm', corpus)
         return corpus
