@@ -4,86 +4,77 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 import pickle
 from gensim import corpora, models, similarities
 from collections import defaultdict
-# from nltk.corpus import stopwords
+from nltk.corpus import stopwords
 from article_dict import Articles
 
 class Corporalize:
     def __init__(self):
         self.art = Articles()
         self.article_dict = self.get_article_dict()
+        print(len(self.article_dict))
         self.article_titles = []
         self.article_content = []
         self.get_title_content()
         self.articles = self.get_articles()
         self.stop_list = self.read_stoplist()
-        self.cleaned_softarticles = self.eliminate_stopwords()
-        print(self.cleaned_softarticles)
-        # self.final_softarticles = self.eliminate_one_words()
+        self.cleaned_articles = self.eliminate_stopwords()
+        self.final_articles = self.eliminate_one_words()
+        print(len(self.final_articles))
         # self.dictionary = self.create_dict_and_save()
         # self.corpus = self.create_corpus_and_save()
     
-    # modify this function when stop list needs to be edited or added to
+    # # modify this function when stop list needs to be edited or added to
     # def create_stoplist(self):
         # stop_list = stopwords.words("english")
-        # stop_list.extend([',', '"', "'", '?', '!', ':', ';', '=', '(', ')', '[', ']', '{', '}', '=', '\n', '\t'])
+        # stop_list += ['==', '===', '====','external', 'links', 'search', '=', 'references', 'summary', '-', '.', ',', '', 'introduction', '^']
         # print(stop_list)
         # pickle.dump(stop_list, open('stoplist.pkl', 'wb'))
     
     def read_stoplist(self):
         stop_list = pickle.load(open('stoplist.pkl', 'rb'))
-        stop_list += ['==', '===', '====']
+        stop_list += ['linksedit', 'referencesedit', 'alsoedit', 'readingedit', 'correctnessedit', 'notesedit', 'statesedit'] #'referencesedit', 'alsoedit', 'readingedit', 'correctnessedit', 'notesedit'
         return stop_list
         
     def pre_clean(self, article):
-        arty = article.decode('utf-8')
-        # print(arty)
-        # a = arty.replace('a', ' ')
-        # print(arty.encode('utf-8'))
-        # input('')
-        return arty
+        clean_all = ['"', "'", '?', '!', ';']
+        text = article.decode('utf-8')
+        for i in clean_all:
+            text = text.replace(i, ' ')
+        return text
     
     def eliminate_stopwords(self):
-        cleaned_softarticles = []
+        cleaned_articles = []
         for artykle in self.articles:
             article = self.pre_clean(artykle)
             art = article.lower().encode('utf-8').split()
-            print(art)
-            input('')
-            # print(article)
-            # input('')
-            # print(art)
-            # print(self.stop_list)
-            # input('')
             ls = []
             for word in art:
-                if word.decode('utf-8') not in self.stop_list:
-                    ls.append(word)
+                w = word.decode('utf-8').strip(',.)][}{&-(=:_').rstrip('s')
+                if w not in self.stop_list:
+                    ls.append(w.encode('utf-8'))
             # ls = [word for word in art if word not in self.stop_list]
-            cleaned_softarticles.append(ls)
-            print('KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK')
-            print(cleaned_softarticles)
-            input('')
-        return cleaned_softarticles
+            cleaned_articles.append(ls)
+        return cleaned_articles
     
     def eliminate_one_words(self):
         frequency = defaultdict(int)
-        for article in self.cleaned_softarticles:
+        for article in self.cleaned_articles:
             for token in article:
                 frequency[token] += 1
-        final_softarticles = []
-        for article in self.cleaned_softarticles:
+        final_articles = []
+        for article in self.cleaned_articles:
             ls = [token for token in article if frequency[token] > 1]
-            final_softarticles.append(ls)
-        return final_softarticles
+            final_articles.append(ls)
+        return final_articles
 
     def create_dict_and_save(self, fname='softarticles'):
-        dictionary = corpora.Dictionary(final_softarticles)
+        dictionary = corpora.Dictionary(self.final_articles)
         dictionary.save(fname + '.dict')
         #print(dictionary.token2id)
         return dictionary
     
     def create_corpus_and_save(self, fname='softarticles'):
-        corpus = [dictionary.doc2bow(article) for article in final_softarticles]
+        corpus = [dictionary.doc2bow(article) for article in self.final_articles]
         corpora.MmCorpus.serialize(fname + '.mm', corpus)
         return corpus
     
