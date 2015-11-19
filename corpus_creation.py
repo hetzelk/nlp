@@ -10,17 +10,17 @@ from article_dict import Articles
 
 class Corporalize:
     def __init__(self):
-        self.art = Articles()
-        self.article_dict = self.get_article_dict()
-        print(len(self.article_dict))
-        self.article_titles = []
-        self.articles= []
-        self.get_title_content()
-        self.stop_list = self.read_stoplist()
-        self.cleaned_articles = self.eliminate_stopwords()
-        self.final_articles = self.eliminate_one_words()
-        self.dictionary = self.create_dict_and_save()
-        self.corpus = self.create_corpus_and_save()
+        # self.art = Articles()
+        # self.article_dict = self.get_article_dict()
+        # print(len(self.article_dict))
+        # self.article_titles = []
+        # self.articles= []
+        # self.get_title_content()
+        # self.stop_list = self.read_stoplist()
+        # self.cleaned_articles = self.eliminate_stopwords()
+        # self.final_articles = self.eliminate_one_words()
+        # self.dictionary = self.create_dict_and_save()
+        # self.corpus = self.create_corpus_and_save()
     
     # # modify this function when stop list needs to be edited or added to
     # def create_stoplist(self):
