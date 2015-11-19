@@ -5,7 +5,7 @@ import re
 class Articles:
     def __init__(self):
         self.DAO = DAO()
-        self.article_dict = {}
+        self.article_dict = self.load_article_dict()
 
     # def read(self):
         # articles = self.DAO.find("topics")
@@ -19,7 +19,8 @@ class Articles:
         # pickle.dump(self.article_dict, open("article_dict.pkl", "wb"))
 
     def load_article_dict(self):
-        self.article_dict = pickle.load(open("article_dict.pkl", "rb"))
+        article_dict = pickle.load(open("article_dict.pkl", "rb"))
+        return article_dict
 
     def alt_read(self):
         for key, content in a.article_dict.items():
@@ -31,10 +32,6 @@ class Articles:
                     cont.replace(c, ' ')
             a.article_dict[key] = cont
             
-a = Articles()
-a.load_article_dict()
-for value in a.article_dict.values():
-    print(value)
 		
 		
 
