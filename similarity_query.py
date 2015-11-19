@@ -1,16 +1,23 @@
 import logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
-
+import pickle
 from gensim import corpora, models, similarities
 
 class Similarity:
-    def __init__(self, dictpath='softarticles.dict', corpuspath='softarticles.mm'):
+    def __init__(self, dictpath='gencache\softarticles.dict', corpuspath='gencache\softarticles.mm'):
+        self.article_titles = self.load_article_titles()
         self.dictionary = self.load_corp_dict(dictpath)
         self.corpus = self.load_corpus(corpuspath)
-        self.lsi = self.load_lsi() #self.create_lsi()
-        self.index = self.load_index() #self.initialize_query_structure('sftarticle')
+        # self.lsi = self.create_lsi()   
+        # self.index = self.create_sim_index('gencache\sftarticle')
+        self.lsi = self.load_lsi()
+        self.index = self.load_index()
+        self.vec_lsi = self.create_query()
+        self.sims = self.perform_query()
+        self.score_dict = self.match_title_score()
+        print(self.score_dict)
         
-    def initialize_query_structure(self, fname):
+    def create_sim_index(self, fname):
         index = similarities.MatrixSimilarity(self.lsi[self.corpus])
         index.save(fname + '.index')
         return index
@@ -25,17 +32,39 @@ class Similarity:
         
     def create_lsi(self):
         lsi = models.LsiModel(self.corpus, id2word=self.dictionary, num_topics=50)
-        lsi.save('sftartlsi')
+        lsi.save('gencache\sftartlsi')
         return lsi
         
     def load_index(self):
-        index = pickle.load(open('sftarticle.index', 'rb')
+        index = similarities.MatrixSimilarity.load("gencache\sftarticle.index")
         return index
         
     def load_lsi(self):
-        lsi = pickle.load(open('sftartlsi.projection', 'rb'))
+        lsi = models.LsiModel.load('gencache\sftartlsi')
         return lsi
         
+    def create_query(self):
+        query = "Software Engineering Python"
+        vec_bow = self.dictionary.doc2bow(query.lower().split())
+        vec_lsi = self.lsi[vec_bow]
+        return vec_lsi
+        
+    def perform_query(self):
+        sims = self.index[self.vec_lsi]
+        print(type(sims))
+        return sims
+        
+    def load_article_titles(self):
+        article_titles = pickle.load(open('gencache\sftarticle_titles.pkl', 'rb'))
+        return article_titles
+        
+    def match_title_score(self):
+        score_dict = {}
+        for i, v in enumerate(self.sims):
+            title = self.article_titles[i]
+            score_dict.update({title:v})
+        return score_dict
+        
+        
+        
 s = Similarity()
-# for key, value in s.dictionary.token2id.items():
-    # print('key: {}, value: {}'.format(key.encode('utf-8'), value))
