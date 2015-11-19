@@ -15,7 +15,7 @@ class article_handler:
 	def update_database(self):
 		count = self.DAO.count("new_articles")
 		if count < 20:
-			self.fetch_documents
+			self.fetch_documents()
 
 
 
