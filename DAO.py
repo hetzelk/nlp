@@ -15,3 +15,9 @@ class DAO:
     def find(self, collection, key):
         cursor = self.handle[collection].find()
         return [item[key] for item in cursor]
+        
+    def pop(self, collection):
+        cursor = self.handle[collection].find()
+        next_item = cursor.next()
+        self.handle[collection].delete_one({'title': next_item['title']})
+        return next_item
