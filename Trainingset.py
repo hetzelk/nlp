@@ -7,8 +7,8 @@ class Trainingset:
     def __init__(self):
         self.DAO = DAO()
         self.api = Wikipedia_API()
-        ## self.links = self.read_file("links.txt") ## 285 Topics Successfully Parsed
-        self.random = self.api.get_random(10, [], 0)
+        self.links = self.read_file("links.txt")
+        ## self.random = self.api.get_random(10, [], 0)
         
     def annotate(self, input):
         print("Beginning annotation of {} titles.".format(len(input)))
@@ -66,4 +66,4 @@ class Trainingset:
         return randomfile
         
 set = Trainingset()
-set.annotate(set.random)
+set.annotate(set.links)
