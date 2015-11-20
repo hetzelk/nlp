@@ -66,6 +66,3 @@ class Wikipedia_API():
         if missed > 0:
             return self.get_random(missed, output, 0)
         return output
-        
-api = Wikipedia_API()
-api.search_topical("related.txt")

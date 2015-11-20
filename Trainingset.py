@@ -2,6 +2,7 @@ import os,sys
 from random import *
 from Wikipedia_API import *
 from DAO import *
+import load
 
 class Trainingset:
     def __init__(self):
@@ -43,3 +44,7 @@ class Trainingset:
         lines = file.readlines()
         file.close()
         return [line[:-1] for line in lines]
+        
+set = Trainingset()
+titles = pickle.load(open('picklejar.pkl', 'rb'))
+set.annotate(titles)
