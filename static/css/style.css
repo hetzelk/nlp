@@ -44,11 +44,15 @@ h4 {
 .form{
     border-bottom: 1px solid #2b2b2b;
 }
+.main-content{
+    min-height: 50vh;
+    background-color: #fff;
+}
 .main-content p{
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    min-height: 50vh;
+ 
 }
 
 .form{
@@ -187,3 +191,34 @@ input {
 #search input[type="search"]::-webkit-input-placeholder { color: #42454e; }
 #search input[type="search"]:-moz-placeholder { color: #42454e; }
 #search input[type="search"]:-ms-input-placeholder { color: #42454e; }
+
+/* table */
+
+.searchResult {
+  display: block;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  }
+
+th {
+    background-color: #2a2a2a;
+    color: white;
+    font-weight: normal;
+    padding: 10px 15px;
+    text-align: left;
+
+  }
+
+td {
+    background-color: #eee;
+    color: #6f6f6f;
+    padding: 10px 15px;
+  }
+
+.leftcol{
+    width: 850px;
+}
+.rightcol{
+    width: 80px;
+}
