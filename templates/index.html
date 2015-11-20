@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block main_content %}
-{% if searched %}
+{% if searched == True %}
 <table class="searchResults">
 	<thead>
 	<tr>
@@ -23,14 +23,11 @@
 	</tr>
 	</thead>
 	<tbody>
-
     {% for item in results %}
-    	
 	<tr>
 		<td class="leftcol">{{ item[0] }}</td>
 		<td class="rightcol">{{ item[1] }}</td>
 	</tr>
-	
     {% endfor %}
     </tbody>
 </table>

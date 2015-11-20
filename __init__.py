@@ -24,13 +24,10 @@ def training_set():
     
 @app.route('/search', methods = ['POST'])
 def search():
-    try:
-        search = request.form.get("search")
-        comparison = Compare()
-        context = {'searched': True, 'query_name': comparison.query_name, 'results': comparison.top}
-        return redirect(url_for('index'))
-    except Exception as e:
-        traceback(e)
+    search = request.form['search']
+    comparison = Compare()
+    context = {'searched': True, 'query_name': comparison.query_title[0], 'results': comparison.top}
+    return render_template('index.html', **context)
 
 @app.route('/quote')
 def quote():
