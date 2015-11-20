@@ -92,7 +92,7 @@ class Corporalize:
 
 class MrClean(Corporalize):
     def __init__(self):
-        self.art = ObtainQuery(True) #if detour, pass True
+        self.art = ObtainQuery(detour=False) #if detour, pass True
         self.article_dict = self.art.query_dict
         self.article_titles = []
         self.articles= []
