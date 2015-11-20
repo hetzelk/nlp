@@ -1,16 +1,26 @@
 {% extends "layout.html" %}
 
 {% block form %}
-<form action="/write" method="POST">
-    <input type="text" placeholder="Enter subject" name="userinput" id="userinput">
+<form action="/search" method="POST">
+    <input type="text" placeholder="Enter a Subject" name="search" id="userinput">
     <input type="submit" value="Submit">
 </form>
 {% endblock %}
 
 {% block main_content %}
+{% if searched %}
+<p>You searched for {{ query_name }}. Here are the results:</p>
+<table>
+    <thead>Comparison Table</thead>
+    <tr><td>Search Term</td><td>Score</td></tr>
+    {% for item in results %}
+    <tr><td>{{ item[0] }}</td><td>{{ item[1] }}</td></tr>
+    {% endfor %}
+</table>
+{% else %}
 <em>Our Mission</em>
 <p>We set out with a goal to use Natural Language Processing(NLP) to find connections between a Topics with a common base idea. In our case we were looking at Computer Science and from there attempting to find ideas connected to our subject.</p>
 <em>Our Method</em>
 <p> add stuff?</p>
+{% endif %}
 {% endblock %}
-

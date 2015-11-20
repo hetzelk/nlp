@@ -31,6 +31,7 @@ class Wikipedia_API():
         return response.json()
         
     def get_random(self, num, output, missed):
+        print("Starting to obtain {} random articles".format(num))
         response = requests.get(self.endpoint + "?rnlimit={}".format(str(num)) + self.random_constructor)
         article_titles = [article['title'] for article in response.json()['query']['random']]
         output = output
@@ -39,8 +40,10 @@ class Wikipedia_API():
             try:
                 page = wikipedia.page(title = title)
                 output.append(page.title)
+                print("Successfully fetched {}".format(title))
             except Exception as e:
                 missed += 1
+                print("Error Fetching {}".format(title))
                 print(type(e))
                 pass
         if missed > 0:
