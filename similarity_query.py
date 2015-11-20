@@ -1,5 +1,5 @@
-import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+# import logging
+# logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 import pickle
 from gensim import corpora, models, similarities
@@ -54,15 +54,11 @@ class Query(Similarity):
         self.index = self.load_index()
         #Necessary objects to perform the query are not loaded
         self.vec_lsi = self.create_query(self.query)
-        print(self.vec_lsi)
-        input('4444')
         self.sims = self.perform_query()
         self.score_dict = self.match_title_score()
         
     def create_query(self, qlist):
         query = qlist[0]
-        print(query)
-        input('333')
         vec_bow = self.dictionary.doc2bow(query)
         vec_lsi = self.lsi[vec_bow]
         return vec_lsi

@@ -1,4 +1,5 @@
 from DAO import *
+from detour import Detour
 import pickle
 import re
 
@@ -34,23 +35,25 @@ class Articles:
             
             
 class ObtainQuery(Articles):
-    def __init__(self):
+    def __init__(self, detour=False):
+        self.detour = detour
         self.query_dict = self.get_query()
 		
     def get_query(self):
-        blank = ''.encode('utf-8')
-        content = blank
-        dao = DAO()
-        while content == blank:
-            article = dao.pop('random')
-            title = article["title"]
-            content = article["content"].encode('utf-8')
-        query = {title:content}
-        return query
+        if not self.detour:
+            blank = ''.encode('utf-8')
+            content = blank
+            dao = DAO()
+            while content == blank:
+                article = dao.pop('random')
+                title = article["title"]
+                content = article["content"].encode('utf-8')
+            query = {title:content}
+            return query
+        else:
+            return self.get_detour()
             
-        
-		
-
-
-
-
+    def get_detour(self):
+        d = Detour()
+        query = {d.title:d.content}
+        return query

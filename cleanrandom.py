@@ -2,11 +2,11 @@ import urllib.request
 import wikipedia
 import time, random
 from Wikipedia_API import *
-from DAO import *
+# from DAO import *
 
 class Exponentialsearch():
     def __init__(self):
-        self.DAO = DAO()
+        # self.DAO = DAO()
         self.wikipedia = Wikipedia_API()
         self.searcheachpage = 0
         self.keywordlist = 0
@@ -30,6 +30,7 @@ class Exponentialsearch():
         self.titlenumber = 0
         self.totallinkslist = 0
         self.totalgoodlinks = []
+        self.userstart()
 
     def start(self, searchexact):
         getpage = wikipedia.page(searchexact)
@@ -128,7 +129,7 @@ class Exponentialsearch():
         self.totalgoodlinks = list(set(self.totalgoodlinks))
 
     def userstart(self):
-        input("Hit enter to start")
+        # input("Hit enter to start")
         self.start(self.basesearch)
         self.main()
         self.repeat()
@@ -153,30 +154,29 @@ class Exponentialsearch():
         self.randomtitle()
 
     def repeat(self):
-        for nextlink in self.displaytitle: #this number should never hit 0, so you need to breka the loop somehow
+        exit = False
+        while exit != True: #this number should never hit 0, so you need to breka the loop somehow
             try:
                 time.sleep(1.0)
                 self.randomtitle()
                 self.basesearch = self.displaytitle[self.titlenumber]
-                print("Title (encoded in utf-8): ", self.basesearch)
-                new_article = self.wikipedia.get_article_info(self.basesearch)
-                while True:
-                    time.sleep(0.1)
-                    count = self.DAO.count("new_articles")
-                    if count >= 20:
-                        pass
-                    else:
-                        self.DAO.insert_one(new_article,"new_articles")
-                        return False
+                # print("Title (encoded in utf-8): ", self.basesearch)
+                new_article = self.wikipedia.get_article_info(self.basesearch.decode('utf-8'))
+                exit = True
+                return new_article
+                # while True:
+                    # time.sleep(0.1)
+                    # count = self.DAO.count("new_articles")
+                    # if count >= 20:
+                        # pass
+                    # else:
+                        # self.DAO.insert_one(new_article,"new_articles")
+                        # return False
             except:
-                time.sleep(.5)
-                self.repeat() #this will just repeat the function if it runs into an error
-                continue
-        
-expo = Exponentialsearch()
-expo.userstart()
-
-print(expo.basesearch)
+                exit = False
+                # time.sleep(.5)
+                # self.repeat() #this will just repeat the function if it runs into an error
+                # continue
 
 
 

@@ -1,5 +1,5 @@
-import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+# import logging
+# logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 import pickle
 from gensim import corpora, models, similarities
@@ -92,15 +92,11 @@ class Corporalize:
 
 class MrClean(Corporalize):
     def __init__(self):
-        self.art = ObtainQuery()
+        self.art = ObtainQuery(True) #if detour, pass True
         self.article_dict = self.art.query_dict
-        print(self.article_dict)
-        input('111')
         self.article_titles = []
         self.articles= []
         self.get_title_content()
         self.stop_list = self.read_stoplist()
         self.cleaned_articles = self.eliminate_stopwords()
         self.final_articles = self.eliminate_one_words()
-        print(self.final_articles)
-        input('222')
