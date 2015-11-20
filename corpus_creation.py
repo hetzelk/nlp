@@ -90,9 +90,12 @@ class Corporalize:
             self.articles.append(content)
             
 
-class MrClean(Corporalize):
+class MrClean(Corporalize, title=None):
     def __init__(self):
-        self.art = ObtainQuery(detour=False) #if detour, pass True
+        self.detour = False
+        if title != None:
+            self.detour = True:
+        self.art = ObtainQuery(self.detour, title) #if detour, pass True
         self.article_dict = self.art.query_dict
         self.article_titles = []
         self.articles= []
