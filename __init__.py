@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for
 import os
-from DAO import DAO
-from Wikipedia_API import Wikipedia_API
+# from DAO import DAO
 import sys, traceback
 from run_comparison import Compare
 
@@ -30,7 +29,7 @@ def search():
     try:
         search = request.form.get("search")
         comparison = Compare()
-        context = {'searched': True, 'query_name': compare.query_name, 'results': compare.top}
+        context = {'searched': True, 'query_name': comparison.query_name, 'results': comparison.top}
         return redirect(url_for('index'))
     except Exception as e:
         traceback(e)
