@@ -25,7 +25,7 @@ def training_set():
 @app.route('/search', methods = ['POST'])
 def search():
     search = request.form['search']
-    comparison = Compare()
+    comparison = Compare(search)
     context = {'searched': True, 'query_name': comparison.query_title[0], 'results': comparison.top}
     return render_template('index.html', **context)
 
