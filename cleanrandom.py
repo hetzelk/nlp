@@ -23,7 +23,7 @@ class Exponentialsearch():
         self.goodfilter = 0
         self.filtered = 0
         self.baseurl = "https://en.wikipedia.org"
-        self.basesearch = "Software engineering"
+        self.basesearch = "Feces"
         self.linkforwiki = 0
         self.listoftitles = 0
         self.displaytitle = 0
@@ -162,6 +162,8 @@ class Exponentialsearch():
                 self.basesearch = self.displaytitle[self.titlenumber]
                 # print("Title (encoded in utf-8): ", self.basesearch)
                 new_article = self.wikipedia.get_article_info(self.basesearch.decode('utf-8'))
+                if new_article['title'] == None or new_article['content'] == None:
+                    raise SyntaxError
                 exit = True
                 return new_article
                 # while True:
