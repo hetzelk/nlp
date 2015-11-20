@@ -1,11 +1,9 @@
 from flask import Flask, render_template, redirect, request, url_for
 import os
-# from DAO import DAO
 import sys, traceback
 from run_comparison import Compare
 
 app = Flask(__name__)
-## dao = DAO()
 
 @app.route('/index', methods = ['GET'])
 @app.route('/', methods = ['GET'])
