@@ -1,17 +1,16 @@
-import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+# import logging
+# logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 import pickle
-import re
 from gensim import corpora, models, similarities
 from collections import defaultdict
-from nltk.corpus import stopwords
-from article_dict import Articles
+# from nltk.corpus import stopwords
+from article_dict import Articles, ObtainQuery
 
 class Corporalize:
     def __init__(self):
         self.art = Articles()
-        self.article_dict = self.get_article_dict()
+        self.article_dict = self.art.article_dict
         print(len(self.article_dict))
         self.article_titles = []
         self.articles= []
@@ -36,7 +35,6 @@ class Corporalize:
         
     def read_stoplist(self):
         stop_list = pickle.load(open('stoplist.pkl', 'rb'))
-        # stop_list += ['linksedit', 'referencesedit', 'alsoedit', 'readingedit', 'correctnessedit', 'notesedit', 'statesedit', 'compileredit' 'overviewedit', 'architecturesedit', 'historyedit', 'definitionsedit', 'licensingedit', 'developmentedit', 'modeledit', 'toolsedit', 'organizationsedit', 'softwareedit', 'adoptionedit', 'usagedit', 'theoryedit', 'computationedit', 'originedit', 'eraedit', 'basicedit', 'versionsedit', 'otheredit', 'syntaxedit', 'examplesedit', 'featuresedit', 'standardedit']
         return stop_list
        
     def pre_clean(self, article):
@@ -86,13 +84,19 @@ class Corporalize:
         corpora.MmCorpus.serialize(fname + '.mm', corpus)
         return corpus
     
-    def get_article_dict(self):
-        article_dict = self.art.article_dict
-        return article_dict
-        
     def get_title_content(self):
         for title, content in self.article_dict.items():
             self.article_titles.append(title)
             self.articles.append(content)
             
-c = Corporalize()
+
+class MrClean(Corporalize):
+    def __init__(self):
+        self.art = ObtainQuery(True) #if detour, pass True
+        self.article_dict = self.art.query_dict
+        self.article_titles = []
+        self.articles= []
+        self.get_title_content()
+        self.stop_list = self.read_stoplist()
+        self.cleaned_articles = self.eliminate_stopwords()
+        self.final_articles = self.eliminate_one_words()

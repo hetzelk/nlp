@@ -8,7 +8,7 @@ class Wikipedia_API():
         self.article_constructor = "&format=json&action=query&prop=revisions&rvprop=content"
         self.random_constructor = "&action=query&list=random&rnredirect=true&format=json"
             
-    def get_article_info(self, title, auto_suggest = True, redirect = True, topic_match_length = 250):
+    def get_article_info(self, title, auto_suggest = True, redirect = True):
         try:
             title = str(title)
             page = wikipedia.page(title = title, auto_suggest = auto_suggest, redirect = redirect)
@@ -31,6 +31,7 @@ class Wikipedia_API():
         return response.json()
         
     def get_random(self, num, output, missed):
+        print("Starting to obtain {} random articles".format(num))
         response = requests.get(self.endpoint + "?rnlimit={}".format(str(num)) + self.random_constructor)
         article_titles = [article['title'] for article in response.json()['query']['random']]
         output = output
@@ -39,8 +40,10 @@ class Wikipedia_API():
             try:
                 page = wikipedia.page(title = title)
                 output.append(page.title)
+                print("Successfully fetched {}".format(title))
             except Exception as e:
                 missed += 1
+                print("Error Fetching {}".format(title))
                 print(type(e))
                 pass
         if missed > 0:
