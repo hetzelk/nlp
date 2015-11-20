@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for
 import os
 import sys, traceback
+from dao import DAO
 from run_comparison import Compare
 
 app = Flask(__name__)
