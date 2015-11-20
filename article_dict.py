@@ -6,10 +6,13 @@ import re
 class Articles:
     def __init__(self):
         self.article_dict = self.load_article_dict()
+        for k, v in self.article_dict.items():
+            # v = v.encode('utf-8')
+            print('{}: {}'.format(k.encode('utf-8'), v))
 
     def read(self):
         dao = DAO()
-        articles = dao.find("topics")
+        articles = dao.find("random")
         for article in articles:
             title = article["title"]
             content = article["content"]
@@ -58,3 +61,7 @@ class ObtainQuery(Articles):
         d = Detour(self.title)
         query = {d.title:d.content}
         return query
+        
+        
+if __name__=="__main__":
+    a = Articles()

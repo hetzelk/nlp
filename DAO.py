@@ -12,9 +12,10 @@ class DAO:
         id = self.handle[collection].insert_one(entry).inserted_id
         return id
     
-    def find(self, collection, key):
+    def find(self, collection, key=None):
         cursor = self.handle[collection].find()
-        return [item[key] for item in cursor]
+        return cursor
+        # return [item[key] for item in cursor]
         
     def pop(self, collection):
         cursor = self.handle[collection].find()
