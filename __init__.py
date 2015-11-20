@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for
 import os
-from DAO import DAO
-from Wikipedia_API import Wikipedia_API
+# from DAO import DAO
 import sys, traceback
 from run_comparison import Compare
 

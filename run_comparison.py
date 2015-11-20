@@ -15,6 +15,12 @@ class Compare:
         ten = sorted(self.query.score_dict.items(), key=lambda x:float(x[1]), reverse=True)
         return ten[:10], ten
         
+<<<<<<< HEAD
 ## c = Compare()
 ## print(c.query_title)
 ## print(c.all)
+=======
+# c = Compare()
+# print(c.query_title)
+# print(c.all)
+>>>>>>> 96f25a81a27517e9c9b60525b58c67749f6645a5
