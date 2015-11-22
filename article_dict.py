@@ -6,9 +6,6 @@ import re
 class Articles:
     def __init__(self):
         self.article_dict = self.load_article_dict()
-        for k, v in self.article_dict.items():
-            # v = v.encode('utf-8')
-            print('{}: {}'.format(k.encode('utf-8'), v))
 
     def read(self):
         dao = DAO()
@@ -20,23 +17,13 @@ class Articles:
             self.article_dict.update({title:cont})
 
     def save_article_dict(self):
-        pickle.dump(self.article_dict, open("article_dict.pkl", "wb"))
+        pickle.dump(self.article_dict, open("gencache/article_dict.pkl", "wb"))
 
     def load_article_dict(self):
-        article_dict = pickle.load(open("article_dict.pkl", "rb"))
+        article_dict = pickle.load(open("gencache/article_dict.pkl", "rb"))
         return article_dict
-
-    # def alt_read(self):
-        # for key, content in a.article_dict.items():
-            # cont = content
-            # for c in content:
-                # try:
-                    # print(c, end='')
-                # except:
-                    # cont.replace(c, ' ')
-            # a.article_dict[key] = cont
-            
-            
+        
+        
 class ObtainQuery(Articles):
     def __init__(self, detour=False, title=None):
         self.detour = detour
@@ -62,6 +49,3 @@ class ObtainQuery(Articles):
         query = {d.title:d.content}
         return query
         
-        
-if __name__=="__main__":
-    a = Articles()

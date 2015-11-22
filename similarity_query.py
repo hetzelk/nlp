@@ -52,7 +52,7 @@ class Query(Similarity):
         self.dictionary = self.load_corp_dict(dictpath)
         self.lsi = self.load_lsi()
         self.index = self.load_index()
-        #Necessary objects to perform the query are not loaded
+        #Necessary objects to perform the query are now loaded; below comparison is made
         self.vec_lsi = self.create_query(self.query)
         self.sims = self.perform_query()
         self.score_dict = self.match_title_score()
@@ -75,4 +75,3 @@ class Query(Similarity):
             value = str(value)[:5]
             score_dict.update({title:value})
         return score_dict
-        
