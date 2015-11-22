@@ -7,6 +7,7 @@ class Detour:
         self.wiki = Wikipedia_API.Wikipedia_API()
         if title == None:
             self.cr = cleanrandom.Exponentialsearch()
+            self.article = self.cr.repeat()
         else:
             self.article = self.wiki.get_article_info(title)
         self.title = self.article['title'].encode('utf-8')

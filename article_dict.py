@@ -1,4 +1,7 @@
-from DAO import *
+try:
+    from DAO import *
+except:
+    pass
 from detour import Detour
 import pickle
 import re
@@ -45,7 +48,10 @@ class ObtainQuery(Articles):
             return self.get_detour()
             
     def get_detour(self):
-        d = Detour(self.title)
+        if self.title == 0:
+            d = Detour()
+        else:
+            d = Detour(self.title)
         query = {d.title:d.content}
         return query
         

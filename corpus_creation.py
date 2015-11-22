@@ -15,13 +15,13 @@ class Corporalize:
         self.article_titles = []
         self.articles = []
         self.get_title_content()
-        # self.stop_list = self.create_stoplist()
-        # self.cleaned_articles = self.eliminate_stopwords()
-        # self.final_articles = self.eliminate_one_words()
-        self.final_articles = self.process_articles()
-        self.dictionary = self.create_dict_and_save()
-        self.corpus = self.create_corpus_and_save()
-        self.write_titles_articles()
+        # # self.stop_list = self.create_stoplist()
+        # # self.cleaned_articles = self.eliminate_stopwords()
+        # # self.final_articles = self.eliminate_one_words()
+        # self.final_articles = self.process_articles()
+        # self.dictionary = self.create_dict_and_save()
+        # self.corpus = self.create_corpus_and_save()
+        # self.write_titles_articles()
     
     def process_articles(self):
         final_articles = []
