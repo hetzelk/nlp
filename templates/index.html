@@ -25,7 +25,8 @@
 	<tbody>
     {% for item in results %}
 	<tr>
-		<td class="leftcol"><a href="{{ query url }}">{{ item[0] }}</a></td>
+<!-- 	replace {{ query url with whatever it's called in the database }} -->
+		<td class="leftcol">{{ item[0] }}</td>
 		<td class="rightcol">{{ item[1] }}</td>
 	</tr>
     {% endfor %}
