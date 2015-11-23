@@ -3,7 +3,7 @@ from similarity_query import Query
 
 class Compare:
     def __init__(self, title=None):
-        self.cleaned = MrClean() #change parameter to 0 when testing with cleanrandom
+        self.cleaned = MrClean(title) #change parameter to 0 when testing with cleanrandom
         self.query = Query(self.cleaned)
         self.query_title = self.query.query_title
         self.top, self.all = self.top_ten()
