@@ -1,7 +1,7 @@
-try:
-    from DAO import *
-except:
-    pass
+# try:
+from DAO import *
+# except:
+    # pass
 from detour import Detour
 import pickle
 import re
