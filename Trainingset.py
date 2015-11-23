@@ -17,7 +17,7 @@ class Trainingset:
         for title in input:
             try:
                 page_info = self.api.get_article_info(title)
-                inserted_id = self.DAO.insert_one(page_info, "random")
+                inserted_id = self.DAO.insert_one(page_info, "topics")
                 print("Inserted: {}".format(inserted_id))
                 inserted += 1
             except Exception as e:
