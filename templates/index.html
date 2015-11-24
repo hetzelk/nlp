@@ -35,11 +35,18 @@
 <br>
 <div class="mission">
 <em>Our Mission</em>
-<p>We set out with a goal to use Natural Language Processing(NLP) to find connections between a Topics with a common base idea. In our case we were looking at Computer Science and from there attempting to find ideas connected to our subject.</p>
-<em>The Why</em>
-<p>Software engineering is a massive area with a lot of jargon to go along with it. This page allows you to find the similarities of an area based how relative to the subject the user searches for.</p>
+<p>We set out with a goal to use <a href="https://en.wikipedia.org/wiki/Natural_language_processing">Natural Language Processing (NLP)</a> to find connections between various topics and a training set. In our case, we used <a href = "https://en.wikipedia.org/wiki/Latent_semantic_indexing">Latent Symantic Indexing (LSA)</a> to train a Python module called Gensim to understand it means for a word to be a "software engineering" term. Then, we took in user-provided terms through a search feature, and used our model to identify the top 10 software engineering topics most related to that term.</p>
+<em>Why</em>
+<p>Software engineering is an enormous field that uses quite a bit of jargon. The goal of this application was to allow anyone to find the top similarities between any term that they searched, and the topics in our database of software engineering terms.</p>
 <em>The How</em>
-<p>Taking a large collection of Wikipedia articles, we scrapped through the pages and tallied up the relationship between two topics. We used the Wikipedia API, Gensim API, MongoDB, and Flask to achieve our goal. Gensim did most of the heavy lifting in this project, tokenizing the pages and giving them a score that was stored up in a MongoDB. Flask is framework of Python that allows us to add the functionality of Python within HTML webpages.</p>
+<p>We used a Python web crawler, combined with the Wikipedia API to compile an enormous list of Wikipedia pages related to software engineering. Then, we stored these pages in a Mongo Database. After we were able to store these articles, we fed them to the <a href = "https://radimrehurek.com/gensim/">Gensim Python module</a>, which "tokenized" the data from the articles, turning the data into a series of vector relations, and creating an LSA model of the data. From there, we took user input through the search bar, and used the LSA model to provide the user with the top 10 software engineering topics related to their search query.</p>
+<em>Technology Used:</em>
+<ul>
+<li><a href = "https://radimrehurek.com/gensim/">Gensim (Python Module)</a> - Easy topic modelling engine</li>
+<li><a href = "https://pypi.python.org/pypi/wikipedia/">Wikipedia API (Python Module)</a> - Retrive and compile article information</li>
+<li>Web Crawler (Homegrown) - Crawl Wikipedia to build initial list of software engineering terms for our training set</li>
+<li><a href = "https://www.mongodb.com">MongoDB (Database)</a> - Stored our training set</li>
+<li><a href = "http://flask.pocoo.org/">Flask (Python Module)</a> - Lightweight MVC module for Python</li>
 </div>
 {% endif %}
 {% endblock %}
