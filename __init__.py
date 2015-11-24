@@ -12,15 +12,6 @@ def index():
         return render_template('index.html')
     except Exception as e:
         traceback(e)
-        
-@app.route('/training-set', methods = ['GET', 'POST'])
-def training_set():
-    try:
-        ## titles = dao.find('topics', 'title')
-        ## titles = [title.title() for title in titles]
-        return render_template('training-set.html')
-    except Exception as e:
-        traceback(e)
     
 @app.route('/search', methods = ['POST'])
 def search():
