@@ -28,7 +28,7 @@ class Articles:
         
         
 class ObtainQuery(Articles):
-    def __init__(self, detour=False, title=None):
+    def __init__(self, detour, title, content):
         self.detour = detour
         self.title = title
         self.query_dict = self.get_query()
@@ -48,10 +48,15 @@ class ObtainQuery(Articles):
             return self.get_detour()
             
     def get_detour(self):
-        if self.title == 0:
+        if self.content != None:
+            pass
+        elif self.title == 0:
             d = Detour()
         else:
             d = Detour(self.title)
-        query = {d.title:d.content}
+        try:
+            query = {d.title:d.content}
+        except:
+            query = {self.title:self.content}
         return query
         
